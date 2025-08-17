@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h4>Edit User</h4>
+                    <h4>Editar Usuario</h4>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('users.update', $user->id) }}">
@@ -14,7 +14,7 @@
                         @method('PUT')
 
                         <div class="mb-3">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label">Nombre</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $user->name) }}" required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password (leave blank to keep current)</label>
+                            <label for="password" class="form-label">Contraseña (Dejar en blanco para seguir utilizando la actual)</label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -38,13 +38,13 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="password_confirmation" class="form-label">Confirm Password</label>
+                            <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
                             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                         </div>
 
                         <div class="d-flex justify-content-between">
-                            <a href="{{ route('users.index') }}" class="btn btn-secondary">Back to Users</a>
-                            <button type="submit" class="btn btn-primary">Update User</button>
+                            <a href="{{ route('users.index') }}" class="btn btn-secondary">Volver</a>
+                            <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
                         </div>
                     </form>
                 </div>

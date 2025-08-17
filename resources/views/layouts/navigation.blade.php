@@ -11,7 +11,7 @@
                 {{ __('Dashboard') }}
             </a>
             <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
-                {{ __('Users') }}
+                {{ __('Usuarios') }}
             </a>
         </div>
 
@@ -22,7 +22,7 @@
                     {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Profile') }}</a></li>
+                    <li><a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Perfil') }}</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li>
                         <form method="POST" action="{{ route('logout') }}">

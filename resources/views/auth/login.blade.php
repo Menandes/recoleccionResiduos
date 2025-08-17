@@ -21,7 +21,7 @@
 
         <!-- Password -->
         <div class="mb-3">
-            <label for="password" class="form-label">{{ __('Password') }}</label>
+            <label for="password" class="form-label">{{ __('Contraseña') }}</label>
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                    name="password" required autocomplete="current-password">
             @error('password')
@@ -33,14 +33,14 @@
         <div class="mb-3 form-check">
             <input id="remember_me" type="checkbox" class="form-check-input" name="remember">
             <label class="form-check-label" for="remember_me">
-                {{ __('Remember me') }}
+                {{ __('Recuérdame') }}
             </label>
         </div>
 
         <div class="d-flex justify-content-between align-items-center">
             @if (Route::has('password.request'))
                 <a class="text-decoration-none" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
+                    {{ __('Olvidaste tu contraseña?') }}
                 </a>
             @endif
 
