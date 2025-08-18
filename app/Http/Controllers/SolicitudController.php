@@ -40,6 +40,11 @@ class SolicitudController extends Controller
             'estado' => 'nullable|string',
         ]);
 
+        $descripcion = trim($request->descripcion);
+        if (empty($descripcion)) {
+            $descripcion = 'Sin descripción proporcionada';
+        }
+
          Solicitud::create([
             'residuo_id' => $request->residuo_id,
             'fecha_recoleccion' => $request->fecha_recoleccion,
@@ -81,6 +86,11 @@ class SolicitudController extends Controller
             'descripcion' => 'nullable|string',
             'estado' => 'nullable|string',
         ]);
+
+        $descripcion = trim($request->descripcion);
+        if (empty($descripcion)) {
+            $descripcion = 'Sin descripción proporcionada';
+        }
 
         $solicitud->update([
             'residuo_id' => $request->residuo_id,

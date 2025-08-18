@@ -29,9 +29,11 @@
             @csrf
 
 
-            <!-- Tipo de Residuo -->
-            <div class="form-group">
-                <label for="tipo_residuo"><i class="fas fa-dumpster"></i> Tipo de Residuo</label>
+          <!-- Tipo de Residuo -->
+            <div class="mb-3">
+                <label for="tipo_residuo" class="form-label fw-bold">
+                    <i class="fas fa-dumpster"></i> Tipo de Residuo
+                </label>
                 <select name="tipo_residuo" id="tipo_residuo" class="form-control" required>
                     <option value="">-- Seleccione una categoría --</option>
                     <option value="Residuo Orgánico">Residuo Orgánico</option>
@@ -41,8 +43,10 @@
             </div>
 
             <!-- Detalle del Residuo (Nombre) -->
-            <div class="form-group">
-                <label for="residuo_id"><i class="fas fa-tag"></i> Detalle del Tipo de Residuo</label>
+            <div class="mb-3">
+                <label for="residuo_id" class="form-label fw-bold">
+                    <i class="fas fa-tag"></i> Detalle del Tipo de Residuo
+                </label>
                 <select name="residuo_id" id="residuo_id" class="form-control" required>
                     <option value="">-- Seleccione un residuo --</option>
 
@@ -53,19 +57,7 @@
                     @endforeach
                 </select>
             </div>
-                <!-- Tipo de Residuo -->
-                <div class="mb-3">
-                    <label for="residuo_id" class="form-label fw-bold"><i class="fas fa-recycle"></i> Tipo de Residuo</label>
-                    <select name="residuo_id" id="residuo_id" class="form-select" required>
-                        <option value="">-- Seleccione un residuo --</option>
-                        @foreach ($residuos as $residuo)
-                            <option value="{{ $residuo->id }}" {{ old('residuo_id') == $residuo->id ? 'selected' : '' }}>
-                                {{ $residuo->nombre }} ({{ $residuo->categoria }})
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-
+               
                 <!-- Fecha de Recolección -->
                 <div class="mb-3">
                     <label for="fecha_recoleccion" class="form-label fw-bold"><i class="fas fa-calendar-alt"></i> Fecha de Recolección</label>
@@ -74,14 +66,7 @@
                            value="{{ old('fecha_recoleccion') }}"
                            min="{{ \Carbon\Carbon::now()->addWeek()->format('Y-m-d') }}" required>
                 </div>
-
-                <!-- Tipo Residuo (detalles) -->
-                <div class="mb-3">
-                    <label for="tipo_residuo" class="form-label fw-bold"><i class="fas fa-info-circle"></i> Tipo Residuo (detalles)</label>
-                    <input type="text" name="tipo_residuo" id="tipo_residuo"
-                           class="form-control" value="{{ old('tipo_residuo') }}" required>
-                </div>
-
+               
                 <!-- Peso -->
                 <div class="mb-3">
                     <label for="peso" class="form-label fw-bold"><i class="fas fa-weight-hanging"></i> Peso (kg)</label>

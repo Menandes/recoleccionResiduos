@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('solicitudes', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->id();          
             $table->foreignId('residuo_id')->constrained()->onDelete('cascade');
-            $table->date('fecha_programada');
-            $table->enum('tipo_recoleccion', ['Programada', 'Por demanda']);
-            $table->enum('estado', ['Pendiente', 'Recolectado'])->default('Pendiente');
-            $table->decimal('kilos', 8, 2)->nullable();
+            $table->date('fecha_recoleccion');
+            $table->string('tipo_residuo', 100);
+            $table->enum('estado', ['Pendiente', 'En proceso', 'Recolectado'])->default('Pendiente');
+            $table->decimal('peso', 8, 2)->nullable(); // Renombrar luego a 'peso' si quieres consistencia
+            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('solicituds');
+        Schema::dropIfExists('solicitudes');
     }
 };
