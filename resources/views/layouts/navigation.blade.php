@@ -13,6 +13,12 @@
             <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                 {{ __('Usuarios') }}
             </a>
+            {{--  <a class="nav-link {{ request()->routeIs('residuos.*') ? 'active' : '' }}" href="{{ route('residuos.index') }}">
+                {{ __('Residuos') }}
+            </a>  --}}
+            <a class="nav-link {{ request()->routeIs('solicitudes.*') ? 'active' : '' }}" href="{{ route('solicitudes.index') }}">
+                {{ __('Solicitud de residuos') }}
+            </a>
         </div>
 
         <!-- Settings Dropdown -->
