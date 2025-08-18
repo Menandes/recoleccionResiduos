@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResiduoController;
 use App\Http\Controllers\SolicitudController;
+use App\Http\Controllers\EmpresaRecolectoraController;
+use App\Http\Controllers\RecolectorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +40,7 @@ require __DIR__.'/auth.php';
 Route::resource('residuos', ResiduoController::class)->middleware('auth');
 
 Route::resource('solicitudes', SolicitudController::class)->middleware('auth');
+
+Route::resource('empresaRecolectora', EmpresaRecolectoraController::class)->middleware('auth');
+
+Route::resource('recolectores', RecolectorController::class)->middleware('auth');

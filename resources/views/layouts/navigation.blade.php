@@ -19,6 +19,12 @@
             <a class="nav-link {{ request()->routeIs('solicitudes.*') ? 'active' : '' }}" href="{{ route('solicitudes.index') }}">
                 {{ __('Solicitud de residuos') }}
             </a>
+            <a class="nav-link {{ request()->routeIs('empresaRecolectora.*') ? 'active' : '' }}" href="{{ route('empresaRecolectora.index') }}">
+                {{ __('Empresas Recolectoras') }}
+            </a>
+            <a class="nav-link {{ request()->routeIs('recolectores.*') ? 'active' : '' }}" href="{{ route('recolectores.index') }}">
+                {{ __('Recolectores') }}
+            </a>
         </div>
 
         <!-- Settings Dropdown -->
