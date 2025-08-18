@@ -1,125 +1,105 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="header">
-        <h1><i class="fas fa-industry"></i> Nueva Empresa Recolectora</h1>
-        <p>Registra una nueva empresa para la gestión de recolección</p>
-    </div>
+<div class="d-flex justify-content-center align-items-center my-5">
+    <div class="card shadow-lg border-0 rounded-4 w-100" style="max-width: 700px;">
 
-    <div class="form-container">
-        <form action="{{ route('empresaRecolectora.store') }}" method="POST">
-            @csrf
+        <!-- Header -->
+        <div class="card-header text-white text-center py-4"
+             style="background: linear-gradient(135deg, #2E7D32, #43A047); border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            <h3 class="mb-1"><i class="fas fa-industry"></i> Nueva Empresa Recolectora</h3>
+            <p class="mb-0">Registra una nueva empresa para la gestión de recolección</p>
+        </div>
 
-            <!-- Nombre -->
-            <div class="form-group">
-                <label for="nombre"><i class="fas fa-building"></i> Nombre de la Empresa</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}" required>
-            </div>
+        <!-- Formulario -->
+        <div class="card-body p-4">
+            <form action="{{ route('empresaRecolectora.store') }}" method="POST">
+                @csrf
 
-            <!-- Dirección -->
-            <div class="form-group">
-                <label for="direccion"><i class="fas fa-map-marker-alt"></i> Dirección</label>
-                <input type="text" name="direccion" id="direccion" class="form-control" value="{{ old('direccion') }}" required>
-            </div>
+                <!-- Nombre -->
+                <div class="mb-3">
+                    <label for="nombre" class="form-label"><i class="fas fa-building"></i> Nombre de la Empresa</label>
+                    <input type="text" name="nombre" id="nombre" 
+                           class="form-control @error('nombre') is-invalid @enderror" 
+                           value="{{ old('nombre') }}" required>
+                    @error('nombre')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <!-- Teléfono -->
-            <div class="form-group">
-                <label for="telefono"><i class="fas fa-phone"></i> Teléfono</label>
-                <input type="text" name="telefono" id="telefono" class="form-control" value="{{ old('telefono') }}" required>
-            </div>
+                <!-- Dirección -->
+                <div class="mb-3">
+                    <label for="direccion" class="form-label"><i class="fas fa-map-marker-alt"></i> Dirección</label>
+                    <input type="text" name="direccion" id="direccion" 
+                           class="form-control @error('direccion') is-invalid @enderror" 
+                           value="{{ old('direccion') }}" required>
+                    @error('direccion')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <!-- Botones -->
-            <div class="text-center mt-4">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Guardar Empresa
-                </button>
-                <a href="{{ route('empresaRecolectora.index') }}" class="btn btn-secondary">
-                    <i class="fas fa-times"></i> Cancelar
-                </a>
-            </div>
-        </form>
+                <!-- Teléfono -->
+                <div class="mb-3">
+                    <label for="telefono" class="form-label"><i class="fas fa-phone"></i> Teléfono</label>
+                    <input type="text" name="telefono" id="telefono" 
+                           class="form-control @error('telefono') is-invalid @enderror" 
+                           value="{{ old('telefono') }}" required>
+                    @error('telefono')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Botones -->
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{{ route('empresaRecolectora.index') }}" class="btn btn-secondary">
+                        <i class="fas fa-times"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Guardar Empresa
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-{{-- Importar iconos --}}
+{{-- Iconos --}}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 
 {{-- Estilos --}}
 <style>
     body {
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #2E8B57, #32CD32, #98FB98);
-        min-height: 100vh;
-        padding: 20px;
+        background-color: #f4f6f9;
     }
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
-        background: white;
-        border-radius: 20px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        overflow: hidden;
-    }
-    .header {
-        background: linear-gradient(135deg, #4CAF50, #2E7D32);
-        color: white;
-        padding: 30px;
-        text-align: center;
-    }
-    .header h1 {
-        font-size: 2em;
-        margin-bottom: 5px;
-    }
-    .header p {
-        font-size: 1.1em;
-        opacity: 0.9;
-    }
-    .form-container {
-        padding: 30px;
-    }
-    .form-group {
-        margin-bottom: 25px;
-    }
-    .form-group label {
-        display: block;
-        margin-bottom: 8px;
+    .form-label {
         font-weight: 600;
-        color: #333;
+        color: #2E7D32;
     }
     .form-control {
-        width: 100%;
-        padding: 15px;
-        border: 2px solid #e0e0e0;
         border-radius: 10px;
-        font-size: 1em;
+        padding: 12px;
+        border: 2px solid #e0e0e0;
         transition: border-color 0.3s ease;
     }
     .form-control:focus {
-        outline: none;
-        border-color: #4CAF50;
+        border-color: #2E7D32;
+        box-shadow: none;
     }
-    .btn {
-        padding: 12px 20px;
-        border-radius: 12px;
-        font-size: 1rem;
-        font-weight: bold;
-        margin: 5px;
-        transition: 0.3s ease;
-    }
-    .btn-primary {
-        background: #4CAF50;
+    .btn-success {
+        background: #2E7D32;
         border: none;
-        color: white;
+        font-weight: bold;
+        padding: 10px 18px;
+        border-radius: 10px;
     }
-    .btn-primary:hover {
-        background: #45a049;
-        transform: translateY(-2px);
+    .btn-success:hover {
+        background: #1b5e20;
     }
     .btn-secondary {
         background: #7f8c8d;
         border: none;
-        color: white;
+        font-weight: bold;
+        border-radius: 10px;
     }
     .btn-secondary:hover {
         background: #95a5a6;

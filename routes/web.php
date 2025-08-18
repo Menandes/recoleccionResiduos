@@ -43,4 +43,6 @@ Route::resource('solicitudes', SolicitudController::class)->middleware('auth');
 
 Route::resource('empresaRecolectora', EmpresaRecolectoraController::class)->middleware('auth');
 
-Route::resource('recolectores', RecolectorController::class)->middleware('auth');
+Route::resource('recolectores', RecolectorController::class)->middleware('auth')->parameters([
+    'recolectores' => 'recolector'
+]);
