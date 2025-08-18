@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('fecha_recoleccion');
             $table->string('tipo_residuo', 100);
             $table->enum('estado', ['Pendiente', 'En proceso', 'Recolectado'])->default('Pendiente');
-            $table->decimal('peso', 8, 2)->nullable(); // Renombrar luego a 'peso' si quieres consistencia
+            $table->decimal('peso', 8, 2)->nullable(); 
             $table->text('descripcion')->nullable();
             $table->timestamps();
         });

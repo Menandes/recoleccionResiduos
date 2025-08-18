@@ -39,7 +39,9 @@ require __DIR__.'/auth.php';
 
 Route::resource('residuos', ResiduoController::class)->middleware('auth');
 
-Route::resource('solicitudes', SolicitudController::class)->middleware('auth');
+Route::resource('solicitudes', SolicitudController::class)->parameters([
+    'solicitudes' => 'solicitud'
+]);
 
 Route::resource('empresaRecolectora', EmpresaRecolectoraController::class)->middleware('auth');
 
