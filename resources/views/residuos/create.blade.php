@@ -17,19 +17,20 @@
     <form action="{{ route('residuos.store') }}" method="POST">
         @csrf
 
+       <div class="mb-3">
+            <label for="categoria" class="form-label">Categoría</label>
+            <select name="categoria" id="categoria" class="form-control" required>
+                <option value="" disabled selected>--Seleccione una categoría--</option>
+                <option value="Residuo Orgánico" {{ old('categoria') == 'Residuo Orgánico' ? 'selected' : '' }}>Residuo Orgánico</option>
+                <option value="Residuo Inorgánico" {{ old('categoria') == 'Residuo Inorgánico' ? 'selected' : '' }}>Residuo Inorgánico</option>
+                <option value="Residuo Peligroso" {{ old('categoria') == 'Residuo Peligroso' ? 'selected' : '' }}>Residuo Peligroso</option>
+            </select>
+        </div>
+
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="categoria" class="form-label">Categoría</label>
-            <input type="text" name="categoria" id="categoria" class="form-control" value="{{ old('categoria') }}" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <textarea name="descripcion" id="descripcion" class="form-control">{{ old('descripcion') }}</textarea>
+            <input type="text" name="nombre" id="nombre" class="form-control" value="{{ old('nombre') }}" required
+            placeholder="Ej: Botellas plásticas, Vidrio, Pilas usadas">
         </div>
 
         <button type="submit" class="btn btn-primary">Guardar</button>

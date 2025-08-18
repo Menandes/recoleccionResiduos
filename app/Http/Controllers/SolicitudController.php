@@ -104,4 +104,9 @@ class SolicitudController extends Controller
 
         return redirect()->route('solicitudes.index')->with('success', 'Solicitud eliminada correctamente.');
     }
+
+    public function residuo()
+    {
+        return $this->belongsTo(Residuo::class);
+    }
 }

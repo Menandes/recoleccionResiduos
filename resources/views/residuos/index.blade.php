@@ -18,7 +18,6 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Categoría</th>
-                    <th>Descripción</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -27,7 +26,6 @@
                     <tr>
                         <td>{{ $residuo->nombre }}</td>
                         <td>{{ $residuo->categoria }}</td>
-                        <td>{{ $residuo->descripcion }}</td>
                         <td>
                             <a href="{{ route('residuos.edit', $residuo) }}" class="btn btn-sm btn-warning">Editar</a>
 

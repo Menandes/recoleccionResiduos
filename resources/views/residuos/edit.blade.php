@@ -27,17 +27,11 @@
         <div class="mb-3">
             <label for="categoria" class="form-label">Categoría</label>
             <select name="categoria" class="form-control" required>
-                <option value="Orgánico" {{ $residuo->categoria == 'Orgánico' ? 'selected' : '' }}>Orgánico</option>
-                <option value="Inorgánico" {{ $residuo->categoria == 'Inorgánico' ? 'selected' : '' }}>Inorgánico</option>
-                <option value="Peligroso" {{ $residuo->categoria == 'Peligroso' ? 'selected' : '' }}>Peligroso</option>
+                <option value="Residuo Orgánico" {{ $residuo->categoria == 'Orgánico' ? 'selected' : '' }}>Residuo Orgánico</option>
+                <option value="Residuo Inorgánico" {{ $residuo->categoria == 'Inorgánico' ? 'selected' : '' }}>Residuo Inorgánico</option>
+                <option value="Residuo Peligroso" {{ $residuo->categoria == 'Peligroso' ? 'selected' : '' }}>Residuo Peligroso</option>
             </select>
         </div>
-
-        <div class="mb-3">
-            <label for="descripcion" class="form-label">Descripción</label>
-            <textarea name="descripcion" class="form-control" rows="3">{{ $residuo->descripcion }}</textarea>
-        </div>
-
         <button type="submit" class="btn btn-primary">Actualizar</button>
         <a href="{{ route('residuos.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>

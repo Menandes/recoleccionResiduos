@@ -23,14 +23,27 @@
         <form action="{{ route('solicitudes.store') }}" method="POST">
             @csrf
 
+
             <!-- Tipo de Residuo -->
             <div class="form-group">
-                <label for="residuo_id"><i class="fas fa-dumpster"></i> Tipo de Residuo</label>
+                <label for="tipo_residuo"><i class="fas fa-dumpster"></i> Tipo de Residuo</label>
+                <select name="tipo_residuo" id="tipo_residuo" class="form-control" required>
+                    <option value="">-- Seleccione una categoría --</option>
+                    <option value="Residuo Orgánico">Residuo Orgánico</option>
+                    <option value="Residuo Inorgánico">Residuo Inorgánico</option>
+                    <option value="Residuo Peligroso">Residuo Peligroso</option>
+                </select>
+            </div>
+
+            <!-- Detalle del Residuo (Nombre) -->
+            <div class="form-group">
+                <label for="residuo_id"><i class="fas fa-tag"></i> Detalle del Tipo de Residuo</label>
                 <select name="residuo_id" id="residuo_id" class="form-control" required>
                     <option value="">-- Seleccione un residuo --</option>
+
                     @foreach ($residuos as $residuo)
-                        <option value="{{ $residuo->id }}" {{ old('residuo_id') == $residuo->id ? 'selected' : '' }}>
-                            {{ $residuo->nombre }} ({{ $residuo->categoria }})
+                        <option value="{{ $residuo->id }}" data-categoria="{{ $residuo->categoria }}">
+                            {{ $residuo->nombre }}
                         </option>
                     @endforeach
                 </select>
@@ -43,14 +56,7 @@
                        value="{{ old('fecha_recoleccion') }}" required>
                 <small class="peso-help">La fecha debe ser al menos 7 días después de hoy.</small>
             </div>
-
-            <!-- Tipo Residuo Detalle -->
-            <div class="form-group">
-                <label for="tipo_residuo"><i class="fas fa-tag"></i> Detalle del Tipo de Residuo</label>
-                <input type="text" name="tipo_residuo" id="tipo_residuo" class="form-control" 
-                       value="{{ old('tipo_residuo') }}" required placeholder="Ej: Plástico, Vidrio, Orgánico...">
-            </div>
-
+          
             <!-- Peso -->
             <div class="form-group">
                 <label for="peso"><i class="fas fa-weight-hanging"></i> Peso estimado (kg)</label>
@@ -88,6 +94,9 @@
         </form>
     </div>
 </div>
+
+
+
 
 {{-- Importar iconos --}}
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -203,4 +212,33 @@
         fechaInput.setAttribute("min", minDate);
     });
 </script>
+
+{{-- Script para seleccionar categoria y nombre de residuo --}}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const categoriaSelect = document.getElementById('tipo_residuo');
+        const residuoSelect = document.getElementById('residuo_id');
+
+        const allOptions = Array.from(residuoSelect.options);
+
+        categoriaSelect.addEventListener('change', function () {
+            const selectedCategoria = this.value;
+
+            // Limpiar opciones actuales
+            residuoSelect.innerHTML = '<option value="">-- Seleccione un residuo --</option>';
+
+            // Filtrar las opciones por categoría
+            allOptions.forEach(option => {
+                const categoria = option.getAttribute('data-categoria');
+                if (categoria === selectedCategoria) {
+                    residuoSelect.appendChild(option.cloneNode(true));
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
 @endsection

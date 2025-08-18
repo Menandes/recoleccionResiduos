@@ -23,7 +23,8 @@ class ResiduoController extends Controller
      */
     public function create()
     {
-        return view('residuos.create');
+        $residuos = Residuo::all();
+        return view('residuos.create', compact('residuos')); 
     }
 
     /**
@@ -34,13 +35,11 @@ class ResiduoController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'categoria' => 'required|string|max:100',
-            'descripcion' => 'nullable|string',
         ]);
 
          Residuo::create([
             'nombre' => $request->nombre,
             'categoria' => $request->categoria,
-            'descripcion' => $request->descripcion,
         ]);
 
         return redirect()->route('residuos.index')->with('success', 'Residuo creado exitosamente.');
@@ -52,7 +51,7 @@ class ResiduoController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('residuos.show', compact('residuos'));
     }
 
     /**
@@ -71,13 +70,11 @@ class ResiduoController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:255',
             'categoria' => 'required|string|max:100',
-            'descripcion' => 'nullable|string',
         ]);
 
         $residuo->update([
             'nombre' => $request->nombre,
             'categoria' => $request->categoria,
-            'descripcion' => $request->descripcion,
         ]);
 
         return redirect()->route('residuos.index')->with('success', 'Residuo actualizado correctamente.');

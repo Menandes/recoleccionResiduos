@@ -2,20 +2,20 @@
     <div class="container">
         <!-- Logo -->
         <a class="navbar-brand" href="{{ route('dashboard') }}">
-            {{ config('app.name', 'Laravel') }}
+            {{ config('app.name', 'EcoRecolecta') }}
         </a>
 
         <!-- Navigation Links -->
         <div class="navbar-nav me-auto">
             <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                {{ __('Dashboard') }}
+                {{ __('Tablero') }}
             </a>
             <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                 {{ __('Usuarios') }}
             </a>
-            {{--  <a class="nav-link {{ request()->routeIs('residuos.*') ? 'active' : '' }}" href="{{ route('residuos.index') }}">
+            <a class="nav-link {{ request()->routeIs('residuos.*') ? 'active' : '' }}" href="{{ route('residuos.index') }}">
                 {{ __('Residuos') }}
-            </a>  --}}
+            </a>
             <a class="nav-link {{ request()->routeIs('solicitudes.*') ? 'active' : '' }}" href="{{ route('solicitudes.index') }}">
                 {{ __('Solicitud de residuos') }}
             </a>
