@@ -15,13 +15,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-<<<<<<< HEAD
         'puntos'
-=======
-        'rol_id',
-        'localidad_id',
-        'puntos', // Nuevo campo de puntos
->>>>>>> 039dc3c80e4d6c9360e215eeca376de253218b93
     ];
 
     protected $hidden = [
@@ -44,7 +38,6 @@ class User extends Authenticatable
         return $this->belongsTo(Rol::class);
     }
 
-<<<<<<< HEAD
     public function getPuntosAttribute($value)
     {
         return $value ?? 0;
@@ -55,19 +48,10 @@ class User extends Authenticatable
         $this->increment('puntos', $cantidad);
     }
     
-=======
-    /**
-     * Un usuario pertenece a una localidad.
-     */
-    public function localidad()
-    {
-        return $this->belongsTo(Localidad::class);
->>>>>>> 039dc3c80e4d6c9360e215eeca376de253218b93
-    }
 
-    /**
-     * Un usuario puede hacer muchas solicitudes de recolección.
-     */
+    // /**
+    //  * Un usuario puede hacer muchas solicitudes de recolección.
+    //  */
     public function solicitudes()
     {
         return $this->hasMany(SolicitudRecoleccion::class);
