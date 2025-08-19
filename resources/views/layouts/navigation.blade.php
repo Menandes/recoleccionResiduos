@@ -39,15 +39,41 @@
                         href="{{ route('recolectores.index') }}">
                         <i class="fas fa-truck me-1"></i> Recolectores
                     </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {{ request()->routeIs('reportes.*') ? 'active' : '' }}" href="#"
+                            id="navbarDropdownReportes" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-chart-bar me-1 text-white"></i> Reportes
+                        </a>
+
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownReportes">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('reporte.seleccionar_usuario') }}">
+                                    <i class="fas fa-user me-2 text-success"></i> Por Usuario
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {{ request()->routeIs('reportes.general') ? 'active' : '' }}"
+                                    href="{{ route('reportes.general') }}">
+                                    <i class="fas fa-globe me-2 text-success"></i> General
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item {{ request()->routeIs('reportes.empresa') ? 'active' : '' }}"
+                                    href="{{ route('reportes.empresa') }}">
+                                    <i class="fas fa-building me-2 text-success"></i> Por Empresa
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 @elseif($rol === 'usuario')
                     <a class="nav-link {{ request()->routeIs('solicitudes.*') ? 'active' : '' }}"
                         href="{{ route('solicitudes.index') }}">
                         <i class="fas fa-clipboard-list me-1"></i> Solicitud de residuos
                     </a>
                 @elseif($rol === 'recolector')
-                    <a class="nav-link {{ request()->routeIs('empresaRecolectora.*') ? 'active' : '' }}"
-                        href="{{ route('empresaRecolectora.index') }}">
-                        <i class="fas fa-industry me-1"></i> Empresas Recolectoras
+                    <a class="nav-link {{ request()->routeIs('recolectorSolicitud.*') ? 'active' : '' }}"
+                        href="{{ route('recolectorSolicitud.index') }}">
+                        <i class="fas fa-clipboard-list me-1"></i> Mis Solicitudes
                     </a>
                 @endif
             </div>
@@ -60,7 +86,7 @@
                         <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i
+                        <li><a class="dropdown-item" href="{{ route('profile.index') }}"><i
                                     class="fas fa-user-edit me-2"></i> Perfil</a></li>
                         <li>
                             <hr class="dropdown-divider">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Solicitud;
 use App\Models\Residuo;
+use App\Models\EmpresaRecolectora;
 use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
@@ -13,7 +14,16 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        $solicitudes = Solicitud::with('residuo')->get();
+        if (auth()->user()->role === 'admin') {
+            // Admin: ve todas las solicitudes
+            $solicitudes = Solicitud::with('residuo', 'user')->get();
+        } else {
+            // Usuario normal: solo sus solicitudes
+            $solicitudes = Solicitud::with('residuo')
+                ->where('user_id', auth()->id())
+                ->get();
+        }
+
         return view('solicitudes.index', compact('solicitudes'));
     }
 
@@ -45,14 +55,17 @@ class SolicitudController extends Controller
             $descripcion = 'Sin descripción proporcionada';
         }
 
-         Solicitud::create([
+        $empresa = EmpresaRecolectora::inRandomOrder()->first();
+
+        Solicitud::create([
             'user_id' => auth()->id(),
             'residuo_id' => $request->residuo_id,
             'fecha_recoleccion' => $request->fecha_recoleccion,
             'tipo_residuo' => $request->tipo_residuo,
             'peso' => $request->peso,
-            'descripcion' => $request->descripcion,
-            'estado' => $request->estado,
+            'descripcion' => $descripcion,
+            'estado' => 'Pendiente',
+            'empresa_recolectora_id' => $empresa ? $empresa->id : null,
         ]);
 
         return redirect()->route('solicitudes.index')->with('success', 'Solicitud creada correctamente.');
@@ -70,8 +83,8 @@ class SolicitudController extends Controller
      */
     public function edit(Solicitud $solicitud)
     {
-         $residuos = Residuo::all();
-         return view('solicitudes.edit', compact('solicitud', 'residuos'));
+        $residuos = Residuo::all();
+        return view('solicitudes.edit', compact('solicitud', 'residuos'));
     }
 
     /**

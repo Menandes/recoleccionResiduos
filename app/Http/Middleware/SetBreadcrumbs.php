@@ -11,38 +11,44 @@ class SetBreadcrumbs
 {
     public function handle(Request $request, Closure $next)
     {
+        $exclude = [
+            'recolectorSolicitud.*',
+        ];
+
+        // Si la ruta actual está excluida, no generes breadcrumbs
+        if (in_array($request->route()->getName(), $exclude)) {
+            View::share('breadcrumbsItems', []);
+            return $next($request);
+        }
+
+        // Código normal de breadcrumbs...
         $items = [];
         $route = $request->route();
-
         if ($route) {
-            $name = $route->getName();        // ej: recolectores.show
-            $params = $route->parameters();   // ej: ['recolector' => Model]
-
+            $name = $route->getName();
+            $params = $route->parameters();
             $map = config('breadcrumbs.routes', []);
 
             if (isset($map[$name]) && is_callable($map[$name])) {
-                // Mantener el orden de parámetros definido en la ruta
                 $orderedParams = [];
                 foreach ($route->parameterNames() as $p) {
                     $orderedParams[] = Arr::get($params, $p);
                 }
                 $items = call_user_func_array($map[$name], $orderedParams);
             } else {
-                // Fallback por segmentos (si olvidaste mapear una ruta)
                 $segments = collect($request->segments());
                 if ($segments->isNotEmpty()) {
                     $url = url('/');
                     $items[] = ['Inicio', $url];
                     foreach ($segments as $i => $seg) {
-                        $url .= '/'.$seg;
+                        $url .= '/' . $seg;
                         $label = ucfirst(str_replace(['-', '_'], ' ', $seg));
-                        $items[] = [$label, $i === $segments->count()-1 ? null : $url];
+                        $items[] = [$label, $i === $segments->count() - 1 ? null : $url];
                     }
                 }
             }
         }
 
-        // Compartimos con todas las vistas
         View::share('breadcrumbsItems', $items);
 
         return $next($request);

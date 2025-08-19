@@ -15,7 +15,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'puntos'
+        'puntos',
+        'rol_id',        // 👈 Agregado
+        'localidad_id',  // 👈 Agregado
     ];
 
     protected $hidden = [
@@ -29,6 +31,10 @@ class User extends Authenticatable
     ];
 
     // 🔗 Relaciones
+    public function localidad()
+{
+    return $this->belongsTo(Localidad::class, 'localidad_id');
+}
 
     /**
      * Un usuario tiene un rol (admin, recolector, usuario).
@@ -47,21 +53,23 @@ class User extends Authenticatable
     {
         $this->increment('puntos', $cantidad);
     }
-    
 
-    // /**
-    //  * Un usuario puede hacer muchas solicitudes de recolección.
-    //  */
+
+   
+  
+    /**
+     * Un usuario puede hacer muchas solicitudes de recolección.
+     */
     public function solicitudes()
     {
-        return $this->hasMany(SolicitudRecoleccion::class);
+        return $this->hasMany(Solicitud::class, 'user_id');
     }
 
     /**
-     * Un usuario (cliente) puede ver sus recolecciones a través de solicitudes.
+     * Si quieres acceder directamente a las recolecciones (opcional).
      */
-    public function recolecciones()
-    {
-        return $this->hasManyThrough(Recoleccion::class, SolicitudRecoleccion::class);
-    }
+    // public function recolecciones()
+    // {
+    //     return $this->hasMany(Solicitud::class, 'user_id');
+    // }
 }
