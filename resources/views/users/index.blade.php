@@ -12,9 +12,10 @@
 
         <div class="card-body">
             <div class="d-flex justify-content-end mb-3">
-                <a href="{{ route('users.create') }}" class="btn btn-primary">
+                <a href="{{ route('users.create') }}" class="btn btn-success">
                     <i class="fas fa-user-plus"></i> Añadir Nuevo Usuario
                 </a>
+
             </div>
 
             <div class="table-responsive">
@@ -25,6 +26,7 @@
                             <th>Nombre</th>
                             <th>Email</th>
                             <th>Fecha de Registro</th>
+                            <th>Puntos</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -35,6 +37,7 @@
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->created_at->format('d/m/Y') }}</td>
+                            <td class="text-center">{{ $user->puntos ?? 0 }}</td>
                             <td>
                                 <a href="{{ route('users.show', $user->id) }}" class="btn btn-info btn-sm">
                                     <i class="fas fa-eye"></i> Ver

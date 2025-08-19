@@ -13,6 +13,7 @@ class Solicitud extends Model
     protected $table = 'solicitudes';
 
     protected $fillable = [
+    'user_id',
     'residuo_id',
     'fecha_recoleccion',
     'tipo_residuo',
@@ -31,7 +32,10 @@ class Solicitud extends Model
         return $this->belongsTo(Residuo::class);
     }
 
-
+    public function empresaRecolectora()
+    {
+        return $this->belongsTo(EmpresaRecolectora::class, 'empresa_recolectora_id');
+    }
 
 }
 

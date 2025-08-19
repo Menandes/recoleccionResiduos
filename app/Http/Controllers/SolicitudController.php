@@ -46,6 +46,7 @@ class SolicitudController extends Controller
         }
 
          Solicitud::create([
+            'user_id' => auth()->id(),
             'residuo_id' => $request->residuo_id,
             'fecha_recoleccion' => $request->fecha_recoleccion,
             'tipo_residuo' => $request->tipo_residuo,

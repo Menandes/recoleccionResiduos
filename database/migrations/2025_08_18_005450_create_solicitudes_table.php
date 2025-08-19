@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('solicitudes', function (Blueprint $table) {
-            $table->id();          
+            $table->id();     
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');     
             $table->foreignId('residuo_id')->constrained()->onDelete('cascade');
             $table->date('fecha_recoleccion');
             $table->string('tipo_residuo', 100);
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->decimal('peso', 8, 2)->nullable(); 
             $table->text('descripcion')->nullable();
             $table->timestamps();
+            $table->foreignId('empresa_recolectora_id')->nullable()->constrained()->onDelete('set null');
         });
     }
 

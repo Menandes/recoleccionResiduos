@@ -29,6 +29,36 @@
                 <a class="nav-link {{ request()->routeIs('recolectores.*') ? 'active' : '' }}" href="{{ route('recolectores.index') }}">
                     <i class="fas fa-truck me-1"></i> Recolectores
                 </a>
+
+                
+              <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle {{ request()->routeIs('reportes.*') ? 'active' : '' }}" 
+       href="#" id="navbarDropdownReportes" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="fas fa-chart-bar me-1 text-white"></i> Reportes
+    </a>
+
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownReportes">
+        <li>
+            <a class="dropdown-item {{ request()->routeIs('reportes.usuario') ? 'active' : '' }}" 
+               href="{{ route('reportes.usuario') }}">
+                <i class="fas fa-user me-2 text-success"></i> Por Usuario
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item {{ request()->routeIs('reportes.general') ? 'active' : '' }}" 
+               href="{{ route('reportes.general') }}">
+                <i class="fas fa-globe me-2 text-success"></i> General
+            </a>
+        </li>
+        <li>
+            <a class="dropdown-item {{ request()->routeIs('reportes.empresa') ? 'active' : '' }}" 
+               href="{{ route('reportes.empresa') }}">
+                <i class="fas fa-building me-2 text-success"></i> Por Empresa
+            </a>
+        </li>
+    </ul>
+</li>
+
             </div>
 
             <!-- Dropdown usuario -->

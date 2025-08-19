@@ -58,6 +58,18 @@
                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                 </div>
 
+                <!-- Puntos -->
+                <div class="form-group mb-3">
+                    <label for="puntos" class="form-label"><i class="fas fa-star"></i> Puntos</label>
+                    <input type="number"
+                        class="form-control @error('puntos') is-invalid @enderror"
+                        id="puntos" name="puntos"
+                        value="{{ old('puntos', $user->puntos) }}" min="0">
+                    @error('puntos')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <!-- Botones -->
                 <div class="d-flex justify-content-between">
                     <a href="{{ route('users.index') }}" class="btn btn-secondary">

@@ -7,7 +7,7 @@
         <div class="card-header text-white text-center py-4"
             style="background: linear-gradient(135deg, #2E7D32, #43A047); border-top-left-radius: 15px; border-top-right-radius: 15px;">
             <h3 class="mb-1"><i class="fas fa-user-plus"></i> Crear Nuevo Usuario</h3>
-            <p class="mb-0">Agrega un nuevo usuario al sistema</p>
+            <p class="mb-0">Agrega un nuevo usuario</p>
         </div>
 
         <!-- Formulario -->

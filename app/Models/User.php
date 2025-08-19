@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'puntos'
     ];
 
     /**
@@ -47,5 +48,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Solicitud::class);
     }
+
+    public function getPuntosAttribute($value)
+    {
+        return $value ?? 0;
+    }
+
+    public function agregarPuntos(int $cantidad)
+    {
+        $this->increment('puntos', $cantidad);
+    }
+    
     }
  

@@ -5,6 +5,7 @@ use App\Http\Controllers\ResiduoController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\EmpresaRecolectoraController;
 use App\Http\Controllers\RecolectorController;
+use App\Http\Controllers\ReporteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,3 +49,10 @@ Route::resource('empresaRecolectora', EmpresaRecolectoraController::class)->midd
 Route::resource('recolectores', RecolectorController::class)->middleware('auth')->parameters([
     'recolectores' => 'recolector'
 ]);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/reportes/usuario', [ReporteController::class, 'reportePorUsuario'])->name('reportes.usuario');
+});
+
+Route::get('/reportes/general', [ReporteController::class, 'reporteGeneral'])->name('reportes.general');
+Route::get('/reportes/empresa', [ReporteController::class, 'reportePorEmpresa'])->name('reportes.empresa');
