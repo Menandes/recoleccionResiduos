@@ -49,7 +49,6 @@ Route::resource('empresaRecolectora', EmpresaRecolectoraController::class)->midd
 Route::resource('recolectores', RecolectorController::class)->middleware('auth')->parameters([
     'recolectores' => 'recolector'
 ]);
-<<<<<<< HEAD
 
 Route::middleware('auth')->group(function () {
     Route::get('/reportes/usuario', [ReporteController::class, 'reportePorUsuario'])->name('reportes.usuario');
@@ -57,5 +56,3 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/reportes/general', [ReporteController::class, 'reporteGeneral'])->name('reportes.general');
 Route::get('/reportes/empresa', [ReporteController::class, 'reportePorEmpresa'])->name('reportes.empresa');
-=======
->>>>>>> 039dc3c80e4d6c9360e215eeca376de253218b93
