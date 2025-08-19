@@ -1,11 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container my-5">
-    <div class="card shadow-lg border-0 rounded-4">
+<div class="d-flex justify-content-center align-items-center my-5">
+    <div class="card shadow-lg border-0 rounded-4 w-100" style="max-width: 700px;">
+
         <!-- Header -->
-        <div class="card-header text-white text-center" style="background: linear-gradient(135deg, #2E7D32, #43A047);">
-            <h3 class="mb-0"><i class="fas fa-user-plus"></i> Nuevo Recolector</h3>
+        <div class="card-header text-white text-center py-4"
+             style="background: linear-gradient(135deg, #2E7D32, #43A047); border-top-left-radius: 15px; border-top-right-radius: 15px;">
+            <h3 class="mb-1"><i class="fas fa-user-plus"></i> Nuevo Recolector</h3>
+            <p class="mb-0">Registra un nuevo recolector</p>
         </div>
 
         <!-- Body -->
@@ -61,41 +64,37 @@
 
 {{-- Estilos --}}
 <style>
-    body {
-        background-color: #f4f6f9;
+    :root { --brand-green: #2E7D32; } /* mismo verde del header */
+
+    body { background-color: #f4f6f9; }
+
+    .card { max-width: 700px; margin: 0 auto; }
+
+    /* <<< NUEVO: color de labels e íconos >>> */
+    .form-label{
+        color: var(--brand-green);
+        font-weight: 600;
     }
-    .card {
-        max-width: 700px;
-        margin: 0 auto;
+    .form-label i{
+        color: var(--brand-green);   /* asegura que el icono herede el verde */
+        margin-right: .5rem;
     }
-    .form-control {
+
+    .form-control{
         border-radius: 10px;
         padding: 12px;
         border: 2px solid #e0e0e0;
-        transition: 0.3s;
+        transition: border-color .3s ease;
     }
-    .form-control:focus {
-        border-color: #43A047;
+    .form-control:focus{
+        border-color: var(--brand-green);
         box-shadow: none;
     }
-    .btn {
-        border-radius: 10px;
-        font-weight: bold;
-        padding: 10px 18px;
-    }
-    .btn-success {
-        background: #2ecc71;
-        border: none;
-    }
-    .btn-success:hover {
-        background: #27ae60;
-    }
-    .btn-secondary {
-        background: #7f8c8d;
-        border: none;
-    }
-    .btn-secondary:hover {
-        background: #95a5a6;
-    }
+
+    .btn{ border-radius: 10px; font-weight: bold; padding: 10px 18px; }
+    .btn-success{ background: var(--brand-green); border: none; }
+    .btn-success:hover{ background: #1b5e20; }
+    .btn-secondary{ background: #7f8c8d; border: none; }
+    .btn-secondary:hover{ background: #95a5a6; }
 </style>
 @endsection

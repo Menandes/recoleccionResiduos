@@ -5,6 +5,7 @@ use App\Http\Controllers\ResiduoController;
 use App\Http\Controllers\SolicitudController;
 use App\Http\Controllers\EmpresaRecolectoraController;
 use App\Http\Controllers\RecolectorController;
+use App\Http\Controllers\ReporteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -30,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
     // User CRUD routes
     Route::resource('users', \App\Http\Controllers\UserController::class);
 });
@@ -39,10 +40,19 @@ require __DIR__.'/auth.php';
 
 Route::resource('residuos', ResiduoController::class)->middleware('auth');
 
-Route::resource('solicitudes', SolicitudController::class)->middleware('auth');
+Route::resource('solicitudes', SolicitudController::class)->parameters([
+    'solicitudes' => 'solicitud'
+]);
 
 Route::resource('empresaRecolectora', EmpresaRecolectoraController::class)->middleware('auth');
 
 Route::resource('recolectores', RecolectorController::class)->middleware('auth')->parameters([
     'recolectores' => 'recolector'
 ]);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/reportes/usuario', [ReporteController::class, 'reportePorUsuario'])->name('reportes.usuario');
+});
+
+Route::get('/reportes/general', [ReporteController::class, 'reporteGeneral'])->name('reportes.general');
+Route::get('/reportes/empresa', [ReporteController::class, 'reportePorEmpresa'])->name('reportes.empresa');

@@ -74,9 +74,14 @@ class UserController extends Controller
         $data = [
             'name' => $request->name,
             'email' => $request->email,
+<<<<<<< HEAD
+            'puntos' => $request->puntos ?? 0,
+        ]);
+=======
             'rol_id' => $request->rol_id,
             'localidad_id' => $request->localidad_id,
         ];
+>>>>>>> 039dc3c80e4d6c9360e215eeca376de253218b93
 
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);

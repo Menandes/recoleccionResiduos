@@ -37,6 +37,10 @@
                 <div class="col-md-8">{{ $user->updated_at->format('d/m/Y H:i') }}</div>
             </div>
 
+            <div class="row mb-3">
+                <div class="col-md-4 fw-bold"><i class="fas fa-star"></i> Puntos:</div>
+                <div class="col-md-8">{{ $user->puntos }}</div>
+            </div>
             <!-- Botones -->
             <div class="d-flex justify-content-between mt-4">
                 <a href="{{ route('users.index') }}" class="btn btn-secondary">
