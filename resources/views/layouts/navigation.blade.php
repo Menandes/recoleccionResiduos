@@ -14,21 +14,42 @@
         <!-- Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
             <div class="navbar-nav me-auto">
-                <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
-                    <i class="fas fa-home me-1"></i> Dashboard
-                </a>
-                <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}" href="{{ route('users.index') }}">
-                    <i class="fas fa-users me-1"></i> Usuarios
-                </a>
-                <a class="nav-link {{ request()->routeIs('solicitudes.*') ? 'active' : '' }}" href="{{ route('solicitudes.index') }}">
-                    <i class="fas fa-clipboard-list me-1"></i> Solicitud de residuos
-                </a>
-                <a class="nav-link {{ request()->routeIs('empresaRecolectora.*') ? 'active' : '' }}" href="{{ route('empresaRecolectora.index') }}">
-                    <i class="fas fa-industry me-1"></i> Empresas Recolectoras
-                </a>
-                <a class="nav-link {{ request()->routeIs('recolectores.*') ? 'active' : '' }}" href="{{ route('recolectores.index') }}">
-                    <i class="fas fa-truck me-1"></i> Recolectores
-                </a>
+                @php
+                    $rol = Auth::user()->rol->nombre;
+                @endphp
+
+                @if($rol === 'admin')
+                    <a class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}"
+                        href="{{ route('dashboard') }}">
+                        <i class="fas fa-home me-1"></i> Dashboard
+                    </a>
+                    <a class="nav-link {{ request()->routeIs('users.*') ? 'active' : '' }}"
+                        href="{{ route('users.index') }}">
+                        <i class="fas fa-users me-1"></i> Usuarios
+                    </a>
+                    <a class="nav-link {{ request()->routeIs('solicitudes.*') ? 'active' : '' }}"
+                        href="{{ route('solicitudes.index') }}">
+                        <i class="fas fa-clipboard-list me-1"></i> Solicitud de residuos
+                    </a>
+                    <a class="nav-link {{ request()->routeIs('empresaRecolectora.*') ? 'active' : '' }}"
+                        href="{{ route('empresaRecolectora.index') }}">
+                        <i class="fas fa-industry me-1"></i> Empresas Recolectoras
+                    </a>
+                    <a class="nav-link {{ request()->routeIs('recolectores.*') ? 'active' : '' }}"
+                        href="{{ route('recolectores.index') }}">
+                        <i class="fas fa-truck me-1"></i> Recolectores
+                    </a>
+                @elseif($rol === 'usuario')
+                    <a class="nav-link {{ request()->routeIs('solicitudes.*') ? 'active' : '' }}"
+                        href="{{ route('solicitudes.index') }}">
+                        <i class="fas fa-clipboard-list me-1"></i> Solicitud de residuos
+                    </a>
+                @elseif($rol === 'recolector')
+                    <a class="nav-link {{ request()->routeIs('empresaRecolectora.*') ? 'active' : '' }}"
+                        href="{{ route('empresaRecolectora.index') }}">
+                        <i class="fas fa-industry me-1"></i> Empresas Recolectoras
+                    </a>
+                @endif
             </div>
 
             <!-- Dropdown usuario -->
@@ -39,8 +60,11 @@
                         <i class="fas fa-user-circle me-1"></i> {{ Auth::user()->name }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm">
-                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="fas fa-user-edit me-2"></i> Perfil</a></li>
-                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i
+                                    class="fas fa-user-edit me-2"></i> Perfil</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
                         <li>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -64,13 +88,16 @@
         color: rgba(255, 255, 255, 0.9) !important;
         transition: 0.2s;
     }
+
     .navbar-dark .nav-link.active {
         font-weight: bold;
         color: #fff !important;
     }
+
     .navbar-dark .nav-link:hover {
         color: #f1f1f1 !important;
     }
+
     .dropdown-menu {
         border-radius: 10px;
     }
