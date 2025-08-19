@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
     // User CRUD routes
     Route::resource('users', \App\Http\Controllers\UserController::class);
 });
@@ -49,6 +49,7 @@ Route::resource('empresaRecolectora', EmpresaRecolectoraController::class)->midd
 Route::resource('recolectores', RecolectorController::class)->middleware('auth')->parameters([
     'recolectores' => 'recolector'
 ]);
+<<<<<<< HEAD
 
 Route::middleware('auth')->group(function () {
     Route::get('/reportes/usuario', [ReporteController::class, 'reportePorUsuario'])->name('reportes.usuario');
@@ -56,3 +57,5 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/reportes/general', [ReporteController::class, 'reporteGeneral'])->name('reportes.general');
 Route::get('/reportes/empresa', [ReporteController::class, 'reportePorEmpresa'])->name('reportes.empresa');
+=======
+>>>>>>> 039dc3c80e4d6c9360e215eeca376de253218b93

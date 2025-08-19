@@ -20,8 +20,8 @@
                 <!-- Nombre -->
                 <div class="mb-3">
                     <label for="nombre" class="form-label"><i class="fas fa-building"></i> Nombre</label>
-                    <input type="text" name="nombre" id="nombre" 
-                           class="form-control @error('nombre') is-invalid @enderror" 
+                    <input type="text" name="nombre" id="nombre"
+                           class="form-control @error('nombre') is-invalid @enderror"
                            value="{{ old('nombre', $empresaRecolectora->nombre) }}" required>
                     @error('nombre')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -31,8 +31,8 @@
                 <!-- Dirección -->
                 <div class="mb-3">
                     <label for="direccion" class="form-label"><i class="fas fa-map-marker-alt"></i> Dirección</label>
-                    <input type="text" name="direccion" id="direccion" 
-                           class="form-control @error('direccion') is-invalid @enderror" 
+                    <input type="text" name="direccion" id="direccion"
+                           class="form-control @error('direccion') is-invalid @enderror"
                            value="{{ old('direccion', $empresaRecolectora->direccion) }}" required>
                     @error('direccion')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -42,8 +42,8 @@
                 <!-- Teléfono -->
                 <div class="mb-3">
                     <label for="telefono" class="form-label"><i class="fas fa-phone"></i> Teléfono</label>
-                    <input type="text" name="telefono" id="telefono" 
-                           class="form-control @error('telefono') is-invalid @enderror" 
+                    <input type="text" name="telefono" id="telefono"
+                           class="form-control @error('telefono') is-invalid @enderror"
                            value="{{ old('telefono', $empresaRecolectora->telefono) }}" required>
                     @error('telefono')
                         <div class="invalid-feedback">{{ $message }}</div>
